@@ -41,7 +41,9 @@ func main() {
 	dir := filepath.Dir(fp)
 	pdfs, err := util.GetPDFFiles(dir)
 	if err != nil {
-		log.Fatalf("搜索同路径下文件发生错误:%v\n", err)
+		log.Fatalf("搜索同路径%v下文件发生错误:%v\n", dir, err)
+	} else {
+		log.Printf("搜索到%d个同目录下的文件\n", len(pdfs))
 	}
 	for i, p := range pdfs {
 		log.Printf("正在处理第%d/%d个文件", i+1, len(pdfs))
