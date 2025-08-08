@@ -1,6 +1,7 @@
 package main
 
 import (
+	"io"
 	"log"
 	"os"
 	"path/filepath"
@@ -16,7 +17,8 @@ func init() {
 		log.Fatalf("无法创建日志文件: %v", err)
 	}
 	// 将日志同时输出到控制台和文件
-	log.SetOutput(logFile)
+	multiWriter := io.MultiWriter(os.Stdout, logFile)
+	log.SetOutput(multiWriter)
 }
 
 /**
